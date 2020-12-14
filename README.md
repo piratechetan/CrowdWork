@@ -11,3 +11,5 @@
  [React Native Reanimated Bottom Sheet](https://www.npmjs.com/package/reanimated-bottom-sheet)
 
  [React Native Elements](https://reactnativeelements.com/)
+ 
+    npm i react-native-elements
