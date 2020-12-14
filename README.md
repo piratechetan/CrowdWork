@@ -3,8 +3,8 @@
 
 
 
-## Packages Installation
--[React Navigation](https://reactnavigation.org/)
+# Packages Installation
+# -[React Navigation](https://reactnavigation.org/)
 
       -Stack Navigation
       -Bottom Tab Navigation
