@@ -4,12 +4,61 @@ import { TextInput, TouchableOpacity } from 'react-native-gesture-handler';
 import logo from '../assets/profile.jpg';
 import {Icon } from 'react-native-elements';
 
+import BottomSheet from 'reanimated-bottom-sheet';
+
+import Animated from 'react-native-reanimated';
 
 const EditProfile = () => {
+
+const renderInner = () => (
+  <View style={styles.panel}>
+      <View style={{alignItems: 'center'}}>
+        <Text style={styles.panelTitle}>Upload Photo</Text>
+        <Text style={styles.panelSubtitle}>Choose Your Profile Picture</Text>
+      </View>
+      <TouchableOpacity style={styles.panelButton} >
+        <Text style={styles.panelButtonTitle}>Take Photo</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.panelButton} >
+        <Text style={styles.panelButtonTitle}>Choose From Library</Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={styles.panelButton}
+        onPress={() => bs.current.snapTo(1)}>
+        <Text style={styles.panelButtonTitle}>Cancel</Text>
+      </TouchableOpacity>
+    </View>
+)
+
+const renderHeader = () => (
+  <View style={styles.header}>
+  <View style={styles.panelHeader}>
+    <View style={styles.panelHandle} />
+  </View>
+</View>
+  )
+
+
+  const bs = React.createRef();
+  const fall = new Animated.Value(1);
+
     return (
-        <ScrollView style={styles.container}>
-        <View style={{alignItems: 'center',marginTop:10}}>
-        <View
+        <View style={styles.container}>
+          <BottomSheet
+        ref={bs}
+        snapPoints={[330, 0]}
+        renderContent={renderInner}
+        renderHeader={renderHeader}
+        initialSnap={0}
+        callbackNode={fall}
+        enabledGestureInteraction={true}
+      />
+        <Animated.View style={{margin: 20,
+        opacity: Animated.add(0.1, Animated.multiply(fall, 1.0)),
+    }}>
+        <View style={{alignItems: 'center'}}>
+          <TouchableOpacity onPress={() => bs.current.snapTo(0)}>
+            <View
               style={{
                 height: 100,
                 width: 100,
@@ -17,20 +66,14 @@ const EditProfile = () => {
                 justifyContent: 'center',
                 alignItems: 'center',
               }}>
-        <ImageBackground
+              <ImageBackground
                 source={logo}
-                style={{height: 90, width: 90}}
+                style={{height: 100, width: 100}}
                 imageStyle={{borderRadius: 50}}>
-                <View
-                  style={{
-                    flex: 1,
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                  }}>
-                </View>
+                
               </ImageBackground>
             </View>
-          
+          </TouchableOpacity>
           <Text style={{marginTop: 10, fontSize: 18, fontWeight: 'bold'}}>
             Chetan Sharma
           </Text>
@@ -80,8 +123,8 @@ const EditProfile = () => {
         <TouchableOpacity style={styles.commandButton} onPress={() => {}}>
           <Text style={styles.panelButtonTitle}>Submit</Text>
         </TouchableOpacity>
-     
-    </ScrollView>
+        </Animated.View>
+    </View>
   );
 };
 
@@ -102,14 +145,10 @@ const styles = StyleSheet.create({
   },
   panel: {
     padding: 20,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: '#FFF',
     paddingTop: 20,
-    // borderTopLeftRadius: 20,
-    // borderTopRightRadius: 20,
-    // shadowColor: '#000000',
-    // shadowOffset: {width: 0, height: 0},
-    // shadowRadius: 5,
-    // shadowOpacity: 0.4,
+    
+    
   },
   header: {
     backgroundColor: '#FFFFFF',
@@ -117,7 +156,10 @@ const styles = StyleSheet.create({
     shadowOffset: {width: -1, height: -3},
     shadowRadius: 2,
     shadowOpacity: 0.4,
-    // elevation: 5,
+    borderTopWidth:1,
+    borderLeftWidth:1,
+    borderRightWidth:1,
+   
     paddingTop: 20,
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
@@ -145,7 +187,7 @@ const styles = StyleSheet.create({
   panelButton: {
     padding: 13,
     borderRadius: 10,
-    backgroundColor: '#FF6347',
+    backgroundColor: '#309ABB',
     alignItems: 'center',
     marginVertical: 7,
   },
@@ -161,6 +203,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: '#f2f2f2',
     paddingBottom: 5,
+    
   },
   actionError: {
     flexDirection: 'row',

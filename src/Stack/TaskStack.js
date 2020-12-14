@@ -30,6 +30,14 @@ const TaskStackScreen = ({navigation}) => {
               <Icon name='menu'  type='entypo' size={30} style={{marginLeft:20}} onPress={()=>navigation.openDrawer()}/>
               </View>
             )
+          },
+          headerRight: () => {
+            return (
+              <View style={{marginRight:10,flexDirection:'row'}}>
+              <Icon name='profile'  type='antdesign' size={25}  />
+              <Icon name='filter'  type='antdesign' size={25} style={{marginLeft:10}} />
+              </View>
+            )
           }
                 
         }}/>
