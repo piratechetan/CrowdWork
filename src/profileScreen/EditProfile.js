@@ -51,28 +51,21 @@ const renderHeader = () => (
         renderHeader={renderHeader}
         initialSnap={0}
         callbackNode={fall}
-        enabledGestureInteraction={true}
+        
       />
         <Animated.View style={{margin: 20,
         opacity: Animated.add(0.1, Animated.multiply(fall, 1.0)),
     }}>
         <View style={{alignItems: 'center'}}>
           <TouchableOpacity onPress={() => bs.current.snapTo(0)}>
-            <View
-              style={{
-                height: 100,
-                width: 100,
-                borderRadius: 15,
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}>
+            
               <ImageBackground
                 source={logo}
                 style={{height: 100, width: 100}}
                 imageStyle={{borderRadius: 50}}>
                 
               </ImageBackground>
-            </View>
+            
           </TouchableOpacity>
           <Text style={{marginTop: 10, fontSize: 18, fontWeight: 'bold'}}>
             Chetan Sharma

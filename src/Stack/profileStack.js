@@ -7,6 +7,8 @@ import ProfileScreen from '../Screens/Profile';
 import { color } from 'react-native-reanimated';
 import ResumeScreen from '../profileScreen/Resume';
 import EditProfile from '../profileScreen/EditProfile'
+import Wallet from '../payments/wallet';
+import RankScreen from '../profileScreen/Rank'
 
 const ProfileStackScreen = ({navigation}) => {
     return(
@@ -33,8 +35,8 @@ const ProfileStackScreen = ({navigation}) => {
           } ,
           headerRight: () => {
             return (
-              <View style={{marginLeft:10}}>
-              <Icon name='notifications-outline'  type='ionicon' size={27} style={{marginRight:15}} />
+              <View style={{marginRight:20}}>
+              <Icon name='notifications-outline'  type='ionicon' size={27}  onPress={() => navigation.navigate('Notification')}/>
               </View>
             )
           }   
@@ -43,6 +45,26 @@ const ProfileStackScreen = ({navigation}) => {
         <Stack.Screen
         name="Edit Profile"
         component={EditProfile}
+        options={{
+        headerTitleAlign:'center',
+        
+        
+        }}
+        
+        />
+        <Stack.Screen
+        name="Wallet"
+        component={Wallet}
+        options={{
+        headerTitleAlign:'center',
+        
+        
+        }}
+        
+        />
+        <Stack.Screen
+        name="Notification"
+        component={RankScreen}
         options={{
         headerTitleAlign:'center',
         

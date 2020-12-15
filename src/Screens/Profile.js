@@ -11,7 +11,7 @@ import {
   
 } from 'react-native';
 import logo from '../assets/profile.jpg';
-import {TouchableOpacity,} from 'react-native-gesture-handler';
+import {TouchableOpacity, TouchableWithoutFeedback,} from 'react-native-gesture-handler';
 
 
 
@@ -79,28 +79,32 @@ const ProfileScreen = ({ navigation }) => {
       </View>
     
      <View style={Styles.wrapper}>
-       <View style={Styles.wallet}>
-         <Text>Rs.400</Text>
-         <Text>Wallet</Text>
+       <TouchableOpacity style={Styles.wallet} onPress={() => navigation.navigate('Wallet')}>
+       <View  >
+         <Icon name='wallet' type='fontisto' size={30} color={'#309ABB'}/>
+         <Text style={[Styles.wallettext,{fontSize:15,marginTop:5}]}>Wallet</Text>
        </View>
-       <View style={Styles.project}>
-         <Text>12</Text>
-         <Text>Projects</Text>
+       </TouchableOpacity>
+       <TouchableOpacity style={Styles.project}>
+       <View>
+       <Icon name='project' type='octicon' size={30} color={'#309ABB'}/>
+         <Text style={[Styles.wallettext,{fontSize:15,marginTop:5}]}>Projects</Text>
        </View>
+       </TouchableOpacity>
      </View>
 
      <View >
-       <TouchableOpacity>
-       <View style={Styles.Item}>
+       
+       <View style={Styles.Item} >
          <View style={{flexDirection:'row'}}>
-         <Icon type='ionicon' name="file-tray"  size={25} />
+         <Icon type='ionicon' name="file-tray"  size={25} onPress={() =>{}}/>
          <Text style={{marginLeft:10}}>Resume</Text>
          </View>
          <View>
          <Icon type='material' name="keyboard-arrow-right"  size={25} />
          </View>
        </View>
-       </TouchableOpacity>
+       
        <TouchableOpacity>
        <View style={Styles.Item}>
          <View style={{flexDirection:'row'}}>
@@ -202,20 +206,40 @@ const Styles = StyleSheet.create({
   },
   wrapper:{
    flexDirection:'row',
-   height:100
+   height:110,
+   justifyContent:'space-between'
     
   }, 
 wallet:{
-    width: '50%',
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor:'orange'
+  elevation:4,
+  backgroundColor:'#fff',
+  marginLeft:25,
+  height:90,
+  width:150,
+  alignItems:'center',
+  justifyContent:'center',
+  borderRadius:10,
+  marginTop:10
+  
   },
   project:{
-    width: '50%',
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor:'skyblue'
+    elevation:4,
+  backgroundColor:'#fff',
+  marginRight:25,
+  height:90,
+  width:150,
+  alignItems:'center',
+  justifyContent:'center',
+  borderRadius:10,
+  marginTop:10
+    
+  
+  },
+  wallettext:{
+    fontSize:15,
+    fontWeight:'bold',
+    
+    alignSelf:'center'
   },
   Item:{
    
@@ -227,7 +251,8 @@ wallet:{
     justifyContent:'space-between',
     marginTop:5,
     elevation:1,
-  }
+  },
+ 
 });
 
 export default ProfileScreen;
